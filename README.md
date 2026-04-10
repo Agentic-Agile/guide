@@ -4,7 +4,7 @@ A guide to decomposing work into phases that keep you involved in what AI is bui
 
 Agentic Agile is about structuring work — before, during, and after each session — so that ownership stays with the team, not the model. It adapts Agile for agent-paced work. It is not about which tools to use or how to prompt an agent.
 
-This guide is maintained as an open draft. Teams are encouraged to adapt the approach to their context and contribute proposals back.
+This guide is maintained as an open draft. Teams are encouraged to adapt the approach to their context and contribute proposals back. The content in this repository is directly reflected at [agentic-agile.com](https://agentic-agile.com).
 
 ---
 

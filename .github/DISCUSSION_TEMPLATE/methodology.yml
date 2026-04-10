@@ -1,0 +1,28 @@
+title: "[Discussion] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for open-ended methodology conversations — ideas, proposals, and questions that don't yet have a clear action item. If your discussion reaches consensus that something is worth changing, open an issue to track it.
+  - type: textarea
+    id: topic
+    attributes:
+      label: What are you exploring?
+      description: Describe the question, idea, or proposal. Be specific about which part of the methodology you're discussing.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What prompted this? A real experience, something you read, a gap you noticed?
+    validations:
+      required: false
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed direction (optional)
+      description: If you have a direction in mind, outline it here. Leave blank if you're genuinely open.
+    validations:
+      required: false

@@ -19,21 +19,34 @@ We are not looking for style changes, formatting tweaks, or additions that make 
 
 These are gaps in the methodology as currently documented. Contributions that address them directly are particularly welcome.
 
-**Bottom-up adoption.** The guide assumes team-wide, consensual adoption. In practice, one developer starts using Claude Code, ships faster, and the team notices. The friction they face is not "how do we redesign our ceremonies" — it's "how do I explain what I built to my tech lead" and "how do I get the team on board." This entry point is not addressed. Module 8 (Scaling to a Team) is the natural home for it.
+**Bottom-up adoption.** The guide assumes team-wide, consensual adoption. In practice, one developer starts using an AI agent, ships faster, and the team notices. The friction they face is not "how do we redesign our ceremonies" — it's "how do I explain what I built to my tech lead" and "how do I get the team on board." This entry point is not addressed. Module 8 (Scaling to a Team) is the natural home for it.
 
 **Kanban and non-sprint workflows.** The methodology is implicitly sprint-shaped. Teams on Kanban have no sprint boundaries, no planning cadence, and no natural Checkpoint moments. The phase concept still works, but the surrounding framing does not. Needs a dedicated treatment explaining how phase boundaries substitute for sprint boundaries and what the Retro equivalent looks like in a continuous-flow context.
 
-**Bootstrapping the Spec Owner role.** The Spec Owner role assumes someone is willing to own the spec, make scope decisions, and sign off on Checkpoints. In many teams this person does not exist — everyone writes tickets, nobody owns the spec, and scope decisions happen in Slack. The guide does not address how to bootstrap the role in a team that resists it, or whether a tech lead or product manager is the right default.
 
-**Greenfield vs maintenance.** Almost all the framing assumes building something new. Maintenance work on a legacy codebase is where AI agents cause the most damage: hallucinating APIs, breaking subtle invariants, producing code that passes tests but violates assumptions baked into the existing system. Phase boundaries, Checkpoints, and Spec File entries all need to be applied differently when the starting point is existing code.
+---
+
+## Project governance
+
+**Benevolent Dictator for Life (BDFL):** [@Simsarmy](https://github.com/Simsarmy) holds final say on the project but exercises this authority only to settle disputes. Day-to-day leadership — driving conversations, reviewing and approving PRs, and anything else typical of a maintainer role — is handled by the **Core Contributors**.
+
+If a decision cannot be resolved within the Core Contributors group, it escalates to the BDFL for a final call. Outside of that, expect the BDFL to participate as a contributor like anyone else.
+
+If the project's direction doesn't align with yours, forking is a legitimate and explicitly supported path — the license permits it. A fork is not a failure; it is the right outcome when a project genuinely needs to go in two different directions.
+
+**Core Contributors** are managed as the `core-contributors` team in the GitHub org. The team is automatically requested as reviewers on all PRs via `CODEOWNERS`. To propose someone for Core Contributor status — including yourself — open a Discussion.
 
 ---
 
 ## How to contribute
 
-1. **Open an issue first** for anything substantive — a methodology change, a new module, a significant rewrite. Discuss before writing.
-2. **Fork and PR** for small corrections (typos, broken examples, factual errors).
-3. **Be specific** — "this doesn't match my experience" needs a concrete example. What did you try, what happened, what did you expect?
+**Discussion → Issue → PR.** That's the funnel. Skipping steps wastes everyone's time.
+
+1. **Start a Discussion** for anything open-ended — a methodology question, a proposal, a challenge you're not sure is a real gap yet. No commitment to act. Use the methodology discussion template.
+2. **Open an Issue** once there's consensus that something is worth doing, or for clear-cut actionable items (a factual error, a broken example) that don't need prior debate. Use the appropriate issue template — correction, gap, challenge, or adaptation.
+3. **Fork and open a PR** only after an issue exists for anything substantive. Small corrections (typos, broken examples) can go straight to a PR. Use the PR template and link the issue.
+
+A Core Contributor will review your PR. If your PR sits unreviewed for more than two weeks, ping the thread.
 
 ---
 

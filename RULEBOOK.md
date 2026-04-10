@@ -2,7 +2,7 @@
 **Version 1.0**
 
 Agentic Agile is a methodology for software teams building with AI agents. It is
-Claude Code-specific. It replaces traditional Agile ceremonies with agent-native equivalents.
+agent-agnostic. It replaces traditional Agile ceremonies with agent-native equivalents.
 
 ---
 
@@ -122,10 +122,10 @@ Each stage contains one or more phases. Phases within a stage share a completene
 
 ## 8. Commands and Agents
 
-A Command is a Claude Code slash command written by the Agent Operator. Commands flow
+A Command is a structured prompt or instruction written by the Agent Operator. Commands flow
 from Tickets and encode intent explicitly. The Agent does not infer scope from context.
 
-An Agent is an external script triggered by a Claude Code hook. Agents run outside the
+An Agent is an external script or automated process triggered by the tooling in use. Agents run outside the
 session and handle autonomous tasks: running tests, flagging Spec File divergences,
 scaffolding phases. Agents do not make decisions.
 
@@ -156,4 +156,4 @@ These are observations from practice, not rules. Adapt them to your context.
 
 ---
 
-*Agentic Agile is Claude Code-specific. Version 1.0.*
+*Agentic Agile is agent-agnostic. Version 1.0.*

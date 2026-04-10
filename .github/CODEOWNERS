@@ -1,0 +1,5 @@
+# Core Contributors are managed as a GitHub Team within the org.
+# The team is automatically requested as reviewers on all PRs.
+# To become a Core Contributor, see the governance section in CONTRIBUTING.md.
+
+* @Simsarmy/core-contributors
