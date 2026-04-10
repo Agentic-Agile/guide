@@ -1,0 +1,180 @@
+import React from "react";
+import { H2, P, Pullquote } from "../components/content/Typography";
+import AgentSessionMock from "../components/mocks/AgentSessionMock";
+import InteractiveHint from "../components/mocks/InteractiveHint";
+import MermaidDiagram from "../components/content/MermaidDiagram";
+import HandoffMock from "../components/mocks/HandoffMock";
+
+export default function Module3Content() {
+  return (
+    <div>
+      <P>
+        In traditional Agile, the ticket is in Jira, the code is in GitHub, and the
+        reasoning behind every decision lives in whoever ran the session. They don&apos;t reference
+        each other. When the developer who talked to the agent leaves, the context goes with them.
+      </P>
+      <P>
+        Agentic Agile defines six artifacts. Each flows from the previous. None exists on its own.
+      </P>
+
+      <MermaidDiagram
+        caption="Artifact flow — each artifact produces the next"
+        code={`flowchart LR
+    SF["Spec File"] --> T["Ticket"]
+    T --> C["Command"]
+    C --> B["Build"]
+    B --> RR["Review Record"]
+    B --> PR["Pull Request"]
+    RR --> AF["Anchor File"]`}
+      />
+
+      <H2>The Spec File</H2>
+      <P>
+        Every team has some version of a shared plan. What&apos;s different here is what it must
+        contain. The Spec File isn&apos;t a backlog. It&apos;s a live record: what was planned, what
+        was built, what the Review surfaced, and what decisions were made. Every other artifact
+        traces back to it.
+      </P>
+      <Pullquote>
+        The Spec File is where the plan and the reality meet.
+      </Pullquote>
+      <P>
+        Format is your call — markdown, Jira, Linear, Notion. What we&apos;ve found matters
+        is what it contains: a phase entry before Build begins, and a Review Record after
+        it closes. Teams that treat the Spec File as a planning document and not a living
+        record tend to lose most of the benefit.
+      </P>
+
+      <H2>The Ticket</H2>
+      <P>
+        A ticket is a scope statement. It defines the outcome, not the implementation. The
+        Product Owner approves it before Build begins. The Developer may decompose a ticket
+        into phases if the work spans more than one agent session — but each phase gets its
+        own completeness criterion: one sentence that says exactly when the work is done.
+      </P>
+      <P>
+        If the ticket is vague, the phase will be vague. The agent will fill the ambiguity
+        with its best guess. That guess may be reasonable. It will not be what you meant.
+      </P>
+
+      <H2>The Command</H2>
+      <P>
+        The Command is a file the Developer writes before the session begins — not during,
+        not after. It encodes intent explicitly: which phase, which ticket, what done looks
+        like, and who the agent is for this session. The agent doesn&apos;t infer scope from
+        context. It acts on what the Command says.
+      </P>
+      <P>
+        Writing the Command before the session is the moment the Developer commits to a
+        specific outcome. It&apos;s also when they discover whether the ticket is actually clear
+        enough to act on. If the Command is hard to write, the ticket needs more work.
+      </P>
+
+      <H2>The Review Record</H2>
+      <P>
+        After Build, the Agent leads a Review. It asks the Developer questions about what
+        was built, surfaces gaps in understanding, and flags divergences from the Spec File.
+        The transcript of that exchange — questions, answers, and any unresolved items —
+        is the Review Record. It gets appended to the Spec File phase entry.
+      </P>
+      <P>
+        The Review Record is what turns the Spec File from a plan into a history. The gap
+        between plan and reality is exactly the information that disappears in traditional
+        Agile. Here it gets written down.
+      </P>
+
+      <H2>The Pull Request</H2>
+      <P>
+        The PR is evaluated against the Spec File, not just for technical correctness. The
+        Agent summarises what was built and how it maps to the phase criteria. The reviewer&apos;s
+        question is &quot;does this deliver what the spec said it would?&quot; — not &quot;does this code
+        look right?&quot; That&apos;s a different review and a more useful one.
+      </P>
+
+      <H2>The Anchor File</H2>
+      <P>
+        The anchor file is a repo-level artifact — a single file at the project root that
+        maps tickets and phases to the actual files they touch. It is not embedded in source
+        files and is not part of the Spec File. It sits alongside both.
+      </P>
+      <P>
+        An anchor entry records which ticket, which phase, which files were touched, who owns
+        it, and what the acceptance criteria were. Over the life of a project it becomes a
+        complete, queryable map of what was built and why. Entries can be written by hand,
+        generated by the agent at phase close, or maintained by editor tooling — the format
+        is open, any tool can read it.
+      </P>
+      <Pullquote>
+        The anchor file makes any file in the codebase traceable back to a decision.
+      </Pullquote>
+      <P>
+        Editor plugins can surface this inline when you open a file: ticket ID, phase,
+        assignee, acceptance criteria — no context switching, no hunting through Jira.
+        The information follows the code. But the artifact itself is independent of any
+        editor or plugin.
+      </P>
+
+      <H2>In practice</H2>
+      <P>
+        The team has a feature in flight — FEAT-10, User Account Security. One of its tickets
+        is PROJ-42: add authentication to the API. Here&apos;s the moment that ticket becomes a
+        spec entry — the handoff from team work to agent work.
+      </P>
+
+      <HandoffMock
+        ticket={{
+          id: "PROJ-42",
+          feature: { id: "FEAT-10", name: "User Account Security" },
+          title: "Add user authentication to API endpoint",
+          summary: "Users need to be able to log in. The POST /login endpoint should accept email and password, verify credentials, and return a signed token.",
+          criteria: [
+            "POST /login returns a signed JWT on valid credentials",
+            "Returns 401 on invalid credentials",
+            "Token payload contains user ID only — no email or sensitive fields",
+          ],
+        }}
+        spec={{
+          heading: "Phase 2: POST /login endpoint",
+          ticket: "PROJ-42",
+          criterion: "POST /login returns a signed JWT on valid credentials and 401 on invalid.",
+          constraints: [
+            "Token payload: user ID only",
+            "JWT_SECRET from environment — do not hardcode",
+            "Route handler lives in src/routes/auth.ts",
+          ],
+          status: "Spec",
+        }}
+      />
+
+      <P>
+        The ticket defines the goal. The spec entry narrows it to one phase with one testable
+        criterion. That translation is the Developer&apos;s job — and it&apos;s done before the agent
+        starts. Here&apos;s what the Review looks like after Build closes that phase.
+      </P>
+
+      <InteractiveHint hint="step through the review" arrowAt={95}>
+        <AgentSessionMock
+          title="api-service"
+          filename="SPEC.md"
+          panelTitle="Agent Review — Phase 2"
+          codeLines={[
+            "## Phase 2: POST /auth/login endpoint",
+            "",
+            "Criteria: Returns signed JWT on valid credentials;",
+            "          401 on invalid.",
+            "Status:   In Review",
+            "Ticket:   PROJ-42",
+          ]}
+          messages={[
+            { role: "agent", content: "Phase 2 complete. POST /auth/login returns a signed JWT on valid credentials and 401 on invalid — criteria met. Two questions before we close." },
+            { role: "agent", content: "The token payload includes the user's ID. Why the ID and not the email?" },
+            { role: "user", content: "Email felt like unnecessary exposure in a token that might end up in logs. Just the ID is enough to look up the user." },
+            { role: "agent", content: "Good. Second: JWT_SECRET comes from the environment. What's the plan if that secret needs to be rotated?" },
+            { role: "user", content: "Honestly haven't worked through that. It wasn't in scope for this phase." },
+            { role: "agent", content: "Logged as unresolved against PROJ-42 Phase 2. Won't block the close — flagged for the Escalation Ceremony. Updating the Spec File now with the Review Record." },
+          ]}
+        />
+      </InteractiveHint>
+    </div>
+  );
+}
